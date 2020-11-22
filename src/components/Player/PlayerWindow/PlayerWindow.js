@@ -1,4 +1,5 @@
 import React from 'react';
+import Scroll from '../Scroll/Scroll';
 import PlayerInfoSwitcher from '../PlayerInfoSwitcher/PlayerInfoSwitcher';
 import defaultTexts from '../../../data/defaultTexts';
 import './playerWindow.css';
@@ -8,8 +9,6 @@ const PlayerWindow = props => {
   let currentTrack = props.currentTrack;
   const player = React.useRef();
   const timer = React.useRef();
-  const scroll = React.useRef();
-  const scrollBar= React.useRef();
 
   React.useEffect(() => {
     !!playStatus ? player.current.play() : player.current.pause();
@@ -29,11 +28,11 @@ const PlayerWindow = props => {
     scroll.current.style.width = scrollLength + 'px';
   }
 
-  const trackTimeChange = (e) => {
-    let scrollWidth = e.clientX - scrollBar.current.getBoundingClientRect().left;
-    player.current.currentTime = (player.current.duration * scrollWidth) / scrollBar.current.clientWidth;
-    scroll.current.style.width = scrollWidth + 'px';
-  }
+  // const trackTimeChange = (e) => {
+  //   let scrollWidth = e.clientX - scrollBar.current.getBoundingClientRect().left;
+  //   player.current.currentTime = (player.current.duration * scrollWidth) / scrollBar.current.clientWidth;
+  //   scroll.current.style.width = scrollWidth + 'px';
+  // }
 
   return (
     <div className="player__play-window">
@@ -46,9 +45,7 @@ const PlayerWindow = props => {
           </p>
         }
         <p className="player__track-duration" ref={timer} ></p>
-        <div className="player__scroll" ref={scrollBar} onClick={trackTimeChange}>
-          <div className="player__scroll-duration" ref={scroll} ></div>
-        </div>
+        <Scroll player={player} />
       </div>
       <audio ref={player}
       src={currentTrack.src}

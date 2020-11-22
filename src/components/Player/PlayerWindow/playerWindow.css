@@ -48,25 +48,6 @@
   text-align: right;
 }
 
-.player__scroll {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  border-radius: 1px;
-  width: 100%;
-  height: 2px;
-  background-color: rgba(255, 255, 255, 0.3);
-  cursor: pointer;
-}
-
-.player__scroll-duration {
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: #ffffff;
-}
-
 @media screen and (max-width: 1024px) {
   .player__track-name {
     font-size: 18px;
