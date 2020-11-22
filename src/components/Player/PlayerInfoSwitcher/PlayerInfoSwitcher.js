@@ -1,22 +1,14 @@
 import React from 'react';
-import classNames from 'classnames';
-import defaultTexts from '../../../data/defaultTexts';
+import MovieLinkButton from '../MovieLinkButton/MovieLinkButton';
+import InfoSwitchButton from '../InfoSwitchButton/InfoSwitchButton';
 import './playerInfoSwitcher.css';
 
 const PlayerInfoSwitcher = props => {
 
   return (
     <div className='player__info-button-wrapper'>
-      <button className={classNames ('player__video-button', {'player__video-button_hidden': props.currentTrack.video === undefined || !props.visibility,})}>
-        <a className='player__video-link' href={props.currentTrack.video} target='blank'>
-        </a>
-      </button>
-      <button
-        className={classNames ('player__info-button', {'player__info-button_hidden' : !props.visibility})}
-        onClick={props.setTitle}> {props.titleMode === 'releases' ?
-        defaultTexts.playerInfoButton.releaseMode :
-        defaultTexts.playerInfoButton.textMode}
-      </button>
+      <MovieLinkButton href={props.currentTrack.video} visibility={props.visibility}  />
+      <InfoSwitchButton visibility={props.visibility} setTitle={props.setTitle} titleMode={props.titleMode} />
     </div>
   )
 }

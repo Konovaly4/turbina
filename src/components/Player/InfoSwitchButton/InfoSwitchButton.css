@@ -1,0 +1,54 @@
+.info-switch-button {
+  padding: 0;
+  justify-self: end;
+  width: 135px;
+  height: 35px;
+  margin-left: 10px;
+  background-color: transparent;
+  border: 2px solid #FFFFFF;
+  border-radius: 17px;
+  outline: 0;
+  color: #FFFFFF;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.info-switch-button_hidden {
+  display: none;
+}
+
+.info-switch-button:hover {
+  opacity: .6;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1024px) {
+  .info-switch-button {
+    width: 125px;
+    height: 34px;
+    border-radius: 16px;
+    font-size: 15px;
+    line-height: 18px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .info-switch-button {
+    width: 122px;
+    height: 31px;
+    border-radius: 15px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .info-switch-button {
+    width: 100%;
+    max-width: 240px;
+    margin-left: 5px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

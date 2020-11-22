@@ -3,6 +3,8 @@ import classNames from 'classnames';
 import PlayerWindow from './PlayerWindow/PlayerWindow';
 import PlayerInfoSwitcher from './PlayerInfoSwitcher/PlayerInfoSwitcher';
 import PlayerInfo from './PlayerInfo/PlayerInfo';
+import ShowHideButton from './ShowHideButton/ShowHideButton';
+import PlayPauseButton from './PlayButton/PlayButton';
 import audioData from '../../data/audioData';
 import emptyCover from '../../images/player/rectangle.jpg'
 import './player.css';
@@ -104,11 +106,7 @@ const Player = (props) => {
       })}>
         <img  className={classNames ('player__cover', {'player__cover_hidden': !visibility})}
         src={currentTrack.cover !== undefined ? currentTrack.cover : emptyCover} alt='album-cover'/>
-        <button className={classNames ('player__play-button', {
-          'player__play-button_play' : !play,
-          'player__play-button_pause': play,
-        })}
-          onClick={currentTrack.length !== 0 ? playToggler : undefined} />
+        <PlayPauseButton play={play} currentTrack={currentTrack} playToggler={playToggler} />
         <PlayerWindow visibility={visibility}
           currentTrack={currentTrack}
           playStatus={play}
@@ -116,11 +114,7 @@ const Player = (props) => {
           setTitle={switchMode}
           windowWidth={windowWidth}
           selector={trackChange} />
-        <button className= {classNames ('player__hide-switcher', {
-          'player__hide-switcher_open' : !visibility,
-          'player__hide-switcher_close' : visibility,
-        })}
-          onClick={showToggler} />
+        <ShowHideButton visibility={visibility} showToggler={showToggler} />
         {windowWidth <= 480 &&
           <PlayerInfoSwitcher currentTrack={currentTrack} visibility={visibility} titleMode={titleMode} setTitle={switchMode} />
         }

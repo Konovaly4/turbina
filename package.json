@@ -41,5 +41,8 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://bybogdan.github.io/turbina/"
+  "homepage": "https://bybogdan.github.io/turbina/",
+  "devDependencies": {
+    "@svgr/cli": "^5.5.0"
+  }
 }

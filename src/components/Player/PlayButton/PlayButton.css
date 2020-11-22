@@ -1,0 +1,25 @@
+.play-button {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  border: 0;
+  outline: 0;
+  width: 18px;
+  height: 15px;
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  grid-area: playbutton;
+}
+
+.play-button:hover {
+  opacity: .6;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 480px) {
+  .play-button {
+    width: 16px;
+    height: 13px;
+  }
+}

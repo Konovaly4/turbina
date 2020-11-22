@@ -1,0 +1,18 @@
+.show-hide-button {
+  margin: 0;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  grid-area: switcher;
+}
+
+.show-hide-button:hover {
+  opacity: .6;
+  cursor: pointer;
+}
