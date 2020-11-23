@@ -12,6 +12,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
+  grid-area: movie-button;
 }
 
 .movie-link-button_hidden {

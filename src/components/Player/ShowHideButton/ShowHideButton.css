@@ -9,7 +9,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  grid-area: switcher;
+  grid-area: show-hide-button;
 }
 
 .show-hide-button:hover {

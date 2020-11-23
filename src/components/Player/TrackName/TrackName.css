@@ -10,6 +10,7 @@
   width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
+  grid-area: track-name;
 }
 
 .player__feat {

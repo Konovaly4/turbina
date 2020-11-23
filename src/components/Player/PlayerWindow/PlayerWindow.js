@@ -13,7 +13,7 @@ const PlayerWindow = props => {
   let currentTime = props.playTime;
   let currentTrack = props.currentTrack;
   const player = React.useRef();
-  const timer = React.useRef();
+  // const timer = React.useRef();
 
   console.log('player-window-currentTime' + currentTime);
 
@@ -48,12 +48,6 @@ const PlayerWindow = props => {
         <PlayTime currentTime={currentTime} />
         <Scroll player={player} />
       </div>
-      {/* <audio ref={player}
-      src={currentTrack.src}
-      type="audio/mp3"
-      onTimeUpdate={setTime}
-      onLoadedData={setTime}
-      onEnded={props.selector} /> */}
       {props.windowWidth > 480 &&
         <PlayerInfoSwitcher currentTrack={currentTrack} visibility={props.visibility} titleMode={props.titleMode} setTitle={props.setTitle} />
       }

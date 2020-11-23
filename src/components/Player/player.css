@@ -22,11 +22,12 @@
 .player__wrapper {
   width: 100%;
   display: grid;
-  grid-template-columns: min-content 61px auto 69px;
-  grid-template-rows: 42px auto;
+  grid-template-columns: min-content 61px auto 70px min-content 145px 69px;
+  grid-template-rows: 42px 2px auto;
   grid-template-areas:
-    'albumcover playbutton playerwindow switcher'
-    'albumcover . list .'
+    'album-cover play-button track-name play-time movie-button info-button show-hide-button'
+    'album-cover . scroll-bar scroll-bar . . .'
+    'album-cover . player-info player-info player-info player-info .'
   ;
   justify-items: center;
   align-items: center;
@@ -49,7 +50,7 @@
   height: 176px;
   border-radius: 4px;
   object-fit: cover;
-  grid-area: albumcover;
+  grid-area: album-cover;
   align-self: flex-start;
 }
 

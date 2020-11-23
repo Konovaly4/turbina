@@ -1,7 +1,12 @@
 import {useState, useEffect, useRef} from 'react';
 import classNames from 'classnames';
-import PlayerWindow from './PlayerWindow/PlayerWindow';
-import PlayerInfoSwitcher from './PlayerInfoSwitcher/PlayerInfoSwitcher';
+// import PlayerWindow from './PlayerWindow/PlayerWindow';
+import TrackName from './TrackName/TrackName';
+import PlayTime from './PlayTime/PlayTime';
+import MovieLinkButton from './MovieLinkButton/MovieLinkButton';
+// import PlayerInfoSwitcher from './PlayerInfoSwitcher/PlayerInfoSwitcher';
+import InfoSwitchButton from './InfoSwitchButton/InfoSwitchButton';
+import Scroll from './Scroll/Scroll';
 import PlayerInfo from './PlayerInfo/PlayerInfo';
 import ShowHideButton from './ShowHideButton/ShowHideButton';
 import PlayPauseButton from './PlayButton/PlayButton';
@@ -141,17 +146,22 @@ const Player = (props) => {
         <img  className={classNames ('player__cover', {'player__cover_hidden': !visibility})}
         src={currentTrack.cover !== undefined ? currentTrack.cover : emptyCover} alt='album-cover'/>
         <PlayPauseButton play={play} currentTrack={currentTrack} playToggler={playToggler} />
-        <PlayerWindow visibility={visibility}
+        <TrackName currentTrack={currentTrack} />
+        <PlayTime currentTime={currentTime} />
+        <MovieLinkButton href={currentTrack.video} visibility={visibility} />
+        {/* <PlayerWindow visibility={visibility}
           currentTrack={currentTrack}
           playTime={currentTime}
           titleMode={titleMode}
           setTitle={switchMode}
           windowWidth={windowWidth}
-          selector={trackChange} />
+          selector={trackChange} /> */}
+        <InfoSwitchButton visibility={visibility} setTitle={switchMode} titleMode={titleMode} />
         <ShowHideButton visibility={visibility} showToggler={showToggler} />
-        {windowWidth <= 480 &&
+        <Scroll player={playerRef} />
+        {/* {windowWidth <= 480 &&
           <PlayerInfoSwitcher currentTrack={currentTrack} visibility={visibility} titleMode={titleMode} setTitle={switchMode} />
-        }
+        } */}
         <PlayerInfo data={tracks} selector={trackSelector} titleMode={titleMode} currentTrack={currentTrack} />
       </div>
     </section>
