@@ -1,15 +1,20 @@
-import {useRef} from 'react';
+import {useRef, useEffect} from 'react';
 import './Scroll.css'
 
-function Scroll ({player}) {
+function Scroll ({trackTimeChange, track}) {
   const scroll = useRef();
   const scrollBar= useRef();
 
-  const trackTimeChange = (e) => {
-    let scrollWidth = e.clientX - scrollBar.current.getBoundingClientRect().left;
-    player.current.currentTime = (player.current.duration * scrollWidth) / scrollBar.current.clientWidth;
-    scroll.current.style.width = scrollWidth + 'px';
-  }
+  useEffect(() => {
+    let scrollLength = scrollBar.current.clientWidth * (track.current.currentTime/track.current.duration);
+    scroll.current.style.width = scrollLength + 'px';
+  })
+
+  // const trackTimeChange = (e) => {
+  //   let scrollWidth = e.clientX - scrollBar.current.getBoundingClientRect().left;
+  //   player.current.currentTime = (player.current.duration * scrollWidth) / scrollBar.current.clientWidth;
+  //   scroll.current.style.width = scrollWidth + 'px';
+  // }
 
   return (
     <div className="player__scroll" ref={scrollBar} onClick={trackTimeChange}>

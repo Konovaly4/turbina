@@ -1,10 +1,8 @@
 import {useState, useEffect, useRef} from 'react';
 import classNames from 'classnames';
-// import PlayerWindow from './PlayerWindow/PlayerWindow';
 import TrackName from './TrackName/TrackName';
 import PlayTime from './PlayTime/PlayTime';
 import MovieLinkButton from './MovieLinkButton/MovieLinkButton';
-// import PlayerInfoSwitcher from './PlayerInfoSwitcher/PlayerInfoSwitcher';
 import InfoSwitchButton from './InfoSwitchButton/InfoSwitchButton';
 import Scroll from './Scroll/Scroll';
 import PlayerInfo from './PlayerInfo/PlayerInfo';
@@ -25,6 +23,7 @@ const Player = (props) => {
   const [windowWidth, setWindowWidth] = useState(document.documentElement.clientWidth);
 
   const playerRef = useRef();
+  const scrollBarRef = useRef();
 
   console.log('re-render');
 
@@ -103,15 +102,15 @@ const Player = (props) => {
     setCurrentTrack(selectedTrack);
   }
 
-  const trackChange = (e) => {
-    setPlay(false);
-    const selectedTrack = tracks.indexOf(currentTrack);
-    const nextTrack = tracks[selectedTrack + 1]
-    if (!!nextTrack) {
-      setFirstRun(1);
-      setCurrentTrack(nextTrack);
-    }
-  }
+  // const trackChange = (e) => {
+  //   setPlay(false);
+  //   const selectedTrack = tracks.indexOf(currentTrack);
+  //   const nextTrack = tracks[selectedTrack + 1]
+  //   if (!!nextTrack) {
+  //     setFirstRun(1);
+  //     setCurrentTrack(nextTrack);
+  //   }
+  // }
 
   useEffect (() => {
     if (firstRun === 0) return;
@@ -124,6 +123,13 @@ const Player = (props) => {
 
   const switchMode = () => {
     setTitleMode(titleMode === 'releases' ? 'texts' : 'releases')
+  }
+
+  const trackTimeChange = (e) => {
+    let scrollBarWidth = e.target.clientWidth;
+    let scrollWidth = e.clientX - e.target.getBoundingClientRect().left;
+    playerRef.current.currentTime = (playerRef.current.duration * scrollWidth) / scrollBarWidth;
+    // scroll.current.style.width = scrollWidth + 'px';
   }
 
 
@@ -158,7 +164,7 @@ const Player = (props) => {
           selector={trackChange} /> */}
         <InfoSwitchButton visibility={visibility} setTitle={switchMode} titleMode={titleMode} />
         <ShowHideButton visibility={visibility} showToggler={showToggler} />
-        <Scroll player={playerRef} />
+        <Scroll ref={scrollBarRef} trackTimeChange={trackTimeChange} track={playerRef} />
         {/* {windowWidth <= 480 &&
           <PlayerInfoSwitcher currentTrack={currentTrack} visibility={visibility} titleMode={titleMode} setTitle={switchMode} />
         } */}
