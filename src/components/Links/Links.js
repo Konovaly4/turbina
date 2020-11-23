@@ -1,5 +1,5 @@
 import React from "react";
-import "../../blocks/header/links.css";
+import "./links.css";
 
 function Links(props) {
   return (

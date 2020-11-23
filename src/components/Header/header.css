@@ -1,9 +1,29 @@
 .header {
+  width: calc(100vw - 60px);
+  max-width: 1280px;
   display: flex;
   justify-content: space-between;
-  padding: 20px 20px 0;
-  max-width: 1280px;
-  margin: 0 auto;
+  margin: 20px 20px 0;
+}
+
+.header__close-button {
+  background: url(../../images/close-icon-header.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  box-sizing: border-box;
+  border-radius: 30px;
+  width: 29px;
+  height: 29px;
+  float: right;
+  margin-bottom: 16px;
+}
+
+.header__links-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 .headerLogo {

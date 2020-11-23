@@ -115,7 +115,6 @@ const Player = (props) => {
 
   return (
     <section className={classNames("player", {
-      "player_stretched": !props.isHidden,
       "player__mobile-blur": windowWidth <= 480 && !!visibility,
       "player__mobile-blur_stretched": windowWidth <= 480 && !!visibility && !props.isHidden,
       })}>

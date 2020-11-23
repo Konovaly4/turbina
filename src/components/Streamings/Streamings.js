@@ -1,5 +1,5 @@
 import React from "react";
-import "../../blocks/header/streamings.css";
+import "./streamings.css";
 
 function Streamings (props) {
   if(props.hidden){
