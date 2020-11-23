@@ -1,8 +1,10 @@
+import {memo} from 'react';
 import cn from 'classnames';
 import defaultTexts from '../../../data/defaultTexts';
 import './InfoSwitchButton.css';
 
-function InfoSwitchButton ({visibility, setTitle, titleMode}) {
+const InfoSwitchButton = memo(({visibility, setTitle, titleMode}) => {
+  console.log('info-button-re-render');
   return (
     <button
     className={cn('info-switch-button', {'info-switch-button_hidden' : !visibility})}
@@ -11,6 +13,6 @@ function InfoSwitchButton ({visibility, setTitle, titleMode}) {
     defaultTexts.playerInfoButton.releaseMode}
   </button>
   )
-}
+})
 
 export default InfoSwitchButton;

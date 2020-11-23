@@ -1,7 +1,9 @@
+import {memo} from 'react';
 import defaultTexts from '../../../data/defaultTexts';
 import './TrackName.css';
 
-function TrackName ({currentTrack}) {
+const TrackName = memo(({currentTrack}) => {
+  console.log('track-name-re-render')
   if (currentTrack.length !== 0) {
     return (
       <p className="player__track-name" >{currentTrack.trackName + ' - ' + currentTrack.artist}{currentTrack.secondArtist ?
@@ -14,6 +16,6 @@ function TrackName ({currentTrack}) {
       {defaultTexts.playerPlaceHolder.noTracks}
     </p>
    )
-}
+})
 
 export default TrackName;

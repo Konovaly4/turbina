@@ -23,7 +23,6 @@ const Player = (props) => {
   const [windowWidth, setWindowWidth] = useState(document.documentElement.clientWidth);
 
   const playerRef = useRef();
-  const scrollBarRef = useRef();
 
   console.log('re-render');
 
@@ -59,10 +58,18 @@ const Player = (props) => {
     setCurrentTrack(trackList[0]);
   }, [])
 
-
   useEffect(() => {
     !!play ? playerRef.current.play() : playerRef.current.pause();
   }, [play])
+
+  useEffect (() => {
+    if (firstRun === 0) return;
+    const playTrack = () => {
+      setPlay(true);
+    }
+    setFirstRun(1);
+    playTrack()
+  }, [currentTrack, firstRun])
 
   const setTime = () => {
     let minutes = Math.floor((playerRef.current.duration - playerRef.current.currentTime) / 60);
@@ -72,15 +79,8 @@ const Player = (props) => {
     minuteValue = (minutes < 10) ? `0${minutes}` :  minutes;
     secondValue = (seconds < 10) ? `0${seconds}` :  seconds;
     let mediaTime = `${minuteValue}:${secondValue}`;
-    // timer.current.textContent = (isNaN(playerRef.current.duration) ? '' :  mediaTime);
-
-    // let scrollLength = scrollBar.current.clientWidth * (player.current.currentTime/player.current.duration);
-    // scroll.current.style.width = scrollLength + 'px';
-
     setCurrentTime(mediaTime);
-    // console.log('curTime - ' + currentTime)
   }
-
 
   const showToggler = () => {
     setVisibility(!visibility);
@@ -102,25 +102,6 @@ const Player = (props) => {
     setCurrentTrack(selectedTrack);
   }
 
-  // const trackChange = (e) => {
-  //   setPlay(false);
-  //   const selectedTrack = tracks.indexOf(currentTrack);
-  //   const nextTrack = tracks[selectedTrack + 1]
-  //   if (!!nextTrack) {
-  //     setFirstRun(1);
-  //     setCurrentTrack(nextTrack);
-  //   }
-  // }
-
-  useEffect (() => {
-    if (firstRun === 0) return;
-    const playTrack = () => {
-      setPlay(true);
-    }
-    setFirstRun(1);
-    playTrack()
-  }, [currentTrack, firstRun])
-
   const switchMode = () => {
     setTitleMode(titleMode === 'releases' ? 'texts' : 'releases')
   }
@@ -129,7 +110,6 @@ const Player = (props) => {
     let scrollBarWidth = e.target.clientWidth;
     let scrollWidth = e.clientX - e.target.getBoundingClientRect().left;
     playerRef.current.currentTime = (playerRef.current.duration * scrollWidth) / scrollBarWidth;
-    // scroll.current.style.width = scrollWidth + 'px';
   }
 
 
@@ -155,19 +135,9 @@ const Player = (props) => {
         <TrackName currentTrack={currentTrack} />
         <PlayTime currentTime={currentTime} />
         <MovieLinkButton href={currentTrack.video} visibility={visibility} />
-        {/* <PlayerWindow visibility={visibility}
-          currentTrack={currentTrack}
-          playTime={currentTime}
-          titleMode={titleMode}
-          setTitle={switchMode}
-          windowWidth={windowWidth}
-          selector={trackChange} /> */}
         <InfoSwitchButton visibility={visibility} setTitle={switchMode} titleMode={titleMode} />
         <ShowHideButton visibility={visibility} showToggler={showToggler} />
-        <Scroll ref={scrollBarRef} trackTimeChange={trackTimeChange} track={playerRef} />
-        {/* {windowWidth <= 480 &&
-          <PlayerInfoSwitcher currentTrack={currentTrack} visibility={visibility} titleMode={titleMode} setTitle={switchMode} />
-        } */}
+        <Scroll trackTimeChange={trackTimeChange} track={playerRef} />
         <PlayerInfo data={tracks} selector={trackSelector} titleMode={titleMode} currentTrack={currentTrack} />
       </div>
     </section>

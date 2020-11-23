@@ -1,8 +1,10 @@
+import {memo} from 'react';
 import cn from 'classnames';
 import MovieButton from '../svg/MovieButton';
 import './MovieLinkButton.css';
 
-function MovieLinkButton ({href, visibility}) {
+const MovieLinkButton = memo(({href, visibility}) => {
+  console.log('moviebutton-re-render')
   return (
     <button className={cn('movie-link-button', {
       'movie-link-button_hidden': href === undefined || !visibility,
@@ -12,6 +14,6 @@ function MovieLinkButton ({href, visibility}) {
     </a>
   </button>
   )
-}
+})
 
 export default MovieLinkButton;

@@ -8,7 +8,7 @@ function Scroll ({trackTimeChange, track}) {
   useEffect(() => {
     let scrollLength = scrollBar.current.clientWidth * (track.current.currentTime/track.current.duration);
     scroll.current.style.width = scrollLength + 'px';
-  })
+  },)
 
   // const trackTimeChange = (e) => {
   //   let scrollWidth = e.clientX - scrollBar.current.getBoundingClientRect().left;
