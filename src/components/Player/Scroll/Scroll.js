@@ -1,5 +1,5 @@
 import {useRef} from 'react';
-import './scroll.css'
+import './Scroll.css'
 
 function Scroll ({player}) {
   const scroll = useRef();

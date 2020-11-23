@@ -1,4 +1,4 @@
-import React from 'react';
+import {useState, useEffect, useRef} from 'react';
 import classNames from 'classnames';
 import PlayerWindow from './PlayerWindow/PlayerWindow';
 import PlayerInfoSwitcher from './PlayerInfoSwitcher/PlayerInfoSwitcher';
@@ -10,15 +10,20 @@ import emptyCover from '../../images/player/rectangle.jpg'
 import './player.css';
 
 const Player = (props) => {
-  const [firstRun, setFirstRun] = React.useState(0)
-  const [visibility, setVisibility] = React.useState(true);
-  const [play, setPlay] = React.useState(false);
-  const [tracks, setTracks] = React.useState([]);
-  const [currentTrack, setCurrentTrack] = React.useState([]);
-  const [titleMode, setTitleMode] = React.useState('releases');
-  const [windowWidth, setWindowWidth] = React.useState(document.documentElement.clientWidth);
+  const [firstRun, setFirstRun] = useState(0)
+  const [visibility, setVisibility] = useState(true);
+  const [play, setPlay] = useState(false);
+  const [tracks, setTracks] = useState([]);
+  const [currentTrack, setCurrentTrack] = useState([]);
+  const [currentTime, setCurrentTime] = useState('00:00');
+  const [titleMode, setTitleMode] = useState('releases');
+  const [windowWidth, setWindowWidth] = useState(document.documentElement.clientWidth);
 
-  React.useEffect(() => {
+  const playerRef = useRef();
+
+  console.log('re-render');
+
+  useEffect(() => {
     const changeWindowWidth = () => {
       setWindowWidth(document.documentElement.clientWidth);
     }
@@ -30,7 +35,7 @@ const Player = (props) => {
     }
   })
 
-  React.useEffect(() => {
+  useEffect(() => {
     // for checking workability with 2 tracks comment the script below
     const trackList = audioData.map((i) => ({
     // for checking workability with 2 tracks uncomment the script below
@@ -49,6 +54,29 @@ const Player = (props) => {
     setTracks(trackList);
     setCurrentTrack(trackList[0]);
   }, [])
+
+
+  useEffect(() => {
+    !!play ? playerRef.current.play() : playerRef.current.pause();
+  }, [play])
+
+  const setTime = () => {
+    let minutes = Math.floor((playerRef.current.duration - playerRef.current.currentTime) / 60);
+    let seconds = Math.floor((playerRef.current.duration - playerRef.current.currentTime) - minutes * 60);
+    let minuteValue;
+    let secondValue;
+    minuteValue = (minutes < 10) ? `0${minutes}` :  minutes;
+    secondValue = (seconds < 10) ? `0${seconds}` :  seconds;
+    let mediaTime = `${minuteValue}:${secondValue}`;
+    // timer.current.textContent = (isNaN(playerRef.current.duration) ? '' :  mediaTime);
+
+    // let scrollLength = scrollBar.current.clientWidth * (player.current.currentTime/player.current.duration);
+    // scroll.current.style.width = scrollLength + 'px';
+
+    setCurrentTime(mediaTime);
+    // console.log('curTime - ' + currentTime)
+  }
+
 
   const showToggler = () => {
     setVisibility(!visibility);
@@ -80,7 +108,7 @@ const Player = (props) => {
     }
   }
 
-  React.useEffect (() => {
+  useEffect (() => {
     if (firstRun === 0) return;
     const playTrack = () => {
       setPlay(true);
@@ -100,6 +128,12 @@ const Player = (props) => {
       "player__mobile-blur": windowWidth <= 480 && !!visibility,
       "player__mobile-blur_stretched": windowWidth <= 480 && !!visibility && !props.isHidden,
       })}>
+      <audio ref={playerRef}
+        src={currentTrack.src}
+        type="audio/mp3"
+        onTimeUpdate={setTime}
+        onLoadedData={setTime}
+        onEnded={props.selector} />
       <div className={classNames ('player__wrapper', {
         'player__wrapper_hidden' : !visibility,
         'player__wrapper_visible' : visibility,
@@ -109,7 +143,7 @@ const Player = (props) => {
         <PlayPauseButton play={play} currentTrack={currentTrack} playToggler={playToggler} />
         <PlayerWindow visibility={visibility}
           currentTrack={currentTrack}
-          playStatus={play}
+          playTime={currentTime}
           titleMode={titleMode}
           setTitle={switchMode}
           windowWidth={windowWidth}
