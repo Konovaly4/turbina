@@ -1,29 +1,32 @@
 .wrapper-about {
-  min-width: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
 }
 
 .about {
-  width: 100%;
+  width: calc(100% - 20px);
   max-width: 1260px;
   min-width: 300px;
   background-color: #fff;
   color: #000000;
+  /* padding: 110px 50px; */
   padding: 110px 50px;
   box-sizing: border-box;
-  margin: 0 10px;
+  /* margin: 0 10px; */
   border-radius: 8px;
 }
 
 @media screen and (max-width: 1025px) {
   .about {
+    /* padding: 100px 50px; */
     padding: 100px 50px;
   }
 }
 
 @media screen and (max-width: 750px) {
   .about {
+    /* padding: 80px 20px; */
     padding: 80px 20px;
   }
 }
@@ -33,7 +36,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0 5px;
+    /* margin: 0 5px; */
   }
 }
 

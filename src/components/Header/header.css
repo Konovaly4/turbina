@@ -4,6 +4,8 @@
   display: flex;
   justify-content: space-between;
   margin: 20px 20px 0;
+  position: absolute;
+  top: 0;
 }
 
 .header__close-button {

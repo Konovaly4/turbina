@@ -12,7 +12,7 @@
   margin: 0 auto;
   position: absolute;
   bottom: 0;
-  left: 0;
+  /* left: 0; */
 }
 
 .player__mobile-blur {

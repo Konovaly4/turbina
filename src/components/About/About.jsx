@@ -1,5 +1,5 @@
 import React from "react";
-import "./index.css";
+import "./about.css";
 import Form from "../Form/Form";
 
 function About() {

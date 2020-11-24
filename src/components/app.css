@@ -21,7 +21,8 @@ button {
 .main {
   min-height: 100vh;
   width: 100%;
-  /* Закомментированные стили ниже сделаны на основе фона из макета при помощи сайта https://cssgradient.io/. Есть идея на его основе сделать живой фон (но пока не продумано) */
+  /* Закомментированные стили ниже сделаны на основе фона из макета при помощи сайта https://cssgradient.io/.
+  Есть идея на его основе сделать живой фон (но пока не продумано) */
   /* background: rgb(212,159,177);
   background: -moz-linear-gradient(180deg, rgba(212,159,177,1) 0%, rgba(45,61,129,1) 98%, rgba(44,93,122,1) 100%);
   background: -webkit-linear-gradient(180deg, rgba(212,159,177,1) 0%, rgba(45,61,129,1) 98%, rgba(44,93,122,1) 100%);
@@ -32,8 +33,12 @@ button {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  margin: 0 auto;
+  margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
 }
 
 .main-wrapper {
@@ -41,7 +46,7 @@ button {
   height: calc(100vh - 10px);
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   position: relative;
 }
