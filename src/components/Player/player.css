@@ -25,11 +25,10 @@
 .player__wrapper {
   width: 100%;
   display: grid;
-  grid-template-columns: min-content 61px auto 70px min-content 145px 69px;
-  grid-template-rows: 42px 2px auto;
+  grid-template-columns: min-content 61px auto 70px min-content min-content 69px;
+  grid-template-rows: 44px auto;
   grid-template-areas:
-    'album-cover play-button track-name play-time movie-button info-button show-hide-button'
-    'album-cover . scroll-bar scroll-bar . . .'
+    'album-cover player-controls player-controls player-controls movie-button info-button show-hide-button'
     'album-cover . player-info player-info player-info player-info .'
   ;
   justify-items: center;

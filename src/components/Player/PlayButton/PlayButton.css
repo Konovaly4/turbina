@@ -1,6 +1,4 @@
 .play-button {
-  grid-column-start: 2;
-  grid-column-end: 3;
   border: 0;
   outline: 0;
   width: 18px;

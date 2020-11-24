@@ -1,0 +1,15 @@
+.player__controls {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 61px 1fr 70px;
+  grid-template-rows: 40px 2px;
+  grid-template-areas:
+  'play-button track-name track-time'
+  '. track-bar track-bar';
+  justify-items: center;
+  align-items: center;
+  position: relative;
+  grid-area: player-controls;
+}

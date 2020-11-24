@@ -1,16 +1,17 @@
 import {useState, useEffect, useRef} from 'react';
 import classNames from 'classnames';
-import usePlayer from '../../hooks/usePlayer';
-import TrackName from './TrackName/TrackName';
-import PlayTime from './PlayTime/PlayTime';
+// import usePlayer from '../../hooks/usePlayer';
+// import TrackName from './TrackName/TrackName'; //move to controls
+// import PlayTime from './PlayTime/PlayTime'; //move to controls
 import MovieLinkButton from './MovieLinkButton/MovieLinkButton';
 import InfoSwitchButton from './InfoSwitchButton/InfoSwitchButton';
-import Scroll from './Scroll/Scroll';
+// import Scroll from './Scroll/Scroll'; //move to controls
 import PlayerInfo from './PlayerInfo/PlayerInfo';
 import ShowHideButton from './ShowHideButton/ShowHideButton';
-import PlayPauseButton from './PlayButton/PlayButton';
+// import PlayPauseButton from './PlayButton/PlayButton'; //move to controls
 import audioData from '../../data/audioData';
 import emptyCover from '../../images/player/rectangle.jpg'
+import PlayerControls from './PlayerControls/PlayerControls';
 import './player.css';
 
 const Player = (props) => {
@@ -20,7 +21,7 @@ const Player = (props) => {
   const [titleMode, setTitleMode] = useState('releases');
   const [windowWidth, setWindowWidth] = useState(document.documentElement.clientWidth);
 
-  const playerRef = useRef();
+  // const playerRef = useRef();
 
   console.log('re-render');
 
@@ -64,20 +65,20 @@ const Player = (props) => {
     setTitleMode(titleMode === 'releases' ? 'texts' : 'releases')
   }
 
-  const {
-    isPlaying,
-    duration,
-    currentTime,
-    playHandle,
-    loadHandle,
-    timeUpdHandle,
-    trackEndHandle,
-    setClickedTime,
-    setPlaying,
-  } = usePlayer(playerRef, currentTrack)
+  // const {
+  //   isPlaying,
+  //   duration,
+  //   currentTime,
+  //   playHandle,
+  //   loadHandle,
+  //   timeUpdHandle,
+  //   trackEndHandle,
+  //   setClickedTime,
+  //   setPlaying,
+  // } = usePlayer(playerRef, currentTrack)
 
   const trackSelector = (e) => {
-    setPlaying(false);
+    // setPlaying(false);
     const selectedTrack = tracks.find((i) => {
       return (i.id === e.target.id);
     });
@@ -90,27 +91,28 @@ const Player = (props) => {
       "player__mobile-blur": windowWidth <= 480 && !!visibility,
       "player__mobile-blur_stretched": windowWidth <= 480 && !!visibility && !props.isHidden,
       })}>
-      <audio ref={playerRef}
+      {/* <audio ref={playerRef}
         src={currentTrack.src}
         type="audio/mp3"
         onTimeUpdate={timeUpdHandle}
         onLoadedData={loadHandle}
         onEnded={trackEndHandle}>
         <p>Ваш браузер не поддерживает HTML5 аудио.</p>
-      </audio>
+      </audio> */}
       <div className={classNames ('player__wrapper', {
         'player__wrapper_hidden' : !visibility,
         'player__wrapper_visible' : visibility,
       })}>
         <img  className={classNames ('player__cover', {'player__cover_hidden': !visibility})}
         src={currentTrack.cover !== undefined ? currentTrack.cover : emptyCover} alt='album-cover'/>
-        <PlayPauseButton play={isPlaying} currentTrack={currentTrack} playToggler={playHandle} />
+        {/* <PlayPauseButton play={isPlaying} currentTrack={currentTrack} playToggler={playHandle} />
         <TrackName currentTrack={currentTrack} />
-        <PlayTime currentTime={currentTime} duration={duration} />
+        <PlayTime currentTime={currentTime} duration={duration} /> */}
+        <PlayerControls currentTrack={currentTrack} />
         <MovieLinkButton href={currentTrack.video} visibility={visibility} />
         <InfoSwitchButton visibility={visibility} setTitle={switchMode} titleMode={titleMode} />
         <ShowHideButton visibility={visibility} showToggler={showToggler} />
-        <Scroll setClickedTime={setClickedTime} currentTime={currentTime} duration={duration} />
+        {/* <Scroll setClickedTime={setClickedTime} currentTime={currentTime} duration={duration} /> */}
         <PlayerInfo data={tracks} selector={trackSelector} titleMode={titleMode} currentTrack={currentTrack} />
       </div>
     </section>
