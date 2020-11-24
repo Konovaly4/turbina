@@ -10,6 +10,14 @@
   grid-area: play-button;
 }
 
+.play-button_play-mode {
+  background-image: url('../../../images/player/play-button.svg');
+}
+
+.play-button_pause-mode {
+  background-image: url('../../../images/player/pause-button.svg');
+}
+
 .play-button:hover {
   opacity: .6;
   cursor: pointer;

@@ -12,7 +12,22 @@
   grid-area: show-hide-button;
 }
 
+.show-hide-button_show {
+  background-image: url('../../../images/player/open-button.svg');
+}
+
+.show-hide-button_hide {
+  background-image: url('../../../images/player/close-button.svg');
+}
+
 .show-hide-button:hover {
   opacity: .6;
   cursor: pointer;
+}
+
+@media screen and (max-width: 480px) {
+  .show-hide-button {
+    width: 16px;
+    height: 16px;
+  }
 }

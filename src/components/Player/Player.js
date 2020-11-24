@@ -68,23 +68,23 @@ const Player = (props) => {
 
 
   return (
-    <section className={classNames("player", {
-      "player__mobile-blur": windowWidth <= 480 && !!visibility,
-      "player__mobile-blur_stretched": windowWidth <= 480 && !!visibility && !props.isHidden,
-      })}>
-      <div className={classNames ('player__wrapper', {
-        'player__wrapper_hidden' : !visibility,
-        'player__wrapper_visible' : visibility,
-      })}>
-        <img  className={classNames ('player__cover', {'player__cover_hidden': !visibility})}
-        src={currentTrack.cover !== undefined ? currentTrack.cover : emptyCover} alt='album-cover'/>
-        <PlayerControls currentTrack={currentTrack} />
-        <MovieLinkButton href={currentTrack.video} visibility={visibility} windowWidth={windowWidth} />
-        <InfoSwitchButton visibility={visibility} setTitle={switchMode} titleMode={titleMode} />
-        <ShowHideButton visibility={visibility} showToggler={showToggler} />
-        <PlayerInfo data={tracks} selector={trackSelector} titleMode={titleMode} currentTrack={currentTrack} />
-      </div>
-    </section>
+    <>
+      {windowWidth <= 480 && !!visibility && <div className='player__mobile-blur' />}
+      <section className='player'>
+        <div className={classNames ('player__wrapper', {
+          'player__wrapper_hidden' : !visibility,
+          'player__wrapper_visible' : visibility,
+        })}>
+          <img  className={classNames ('player__cover', {'player__cover_hidden': !visibility})}
+          src={currentTrack.cover !== undefined ? currentTrack.cover : emptyCover} alt='album-cover'/>
+          <PlayerControls currentTrack={currentTrack} />
+          <MovieLinkButton href={currentTrack.video} visibility={visibility} windowWidth={windowWidth} />
+          <InfoSwitchButton visibility={visibility} setTitle={switchMode} titleMode={titleMode} />
+          <ShowHideButton visibility={visibility} showToggler={showToggler} />
+          <PlayerInfo data={tracks} selector={trackSelector} titleMode={titleMode} currentTrack={currentTrack} />
+        </div>
+      </section>
+    </>
   )
 }
 

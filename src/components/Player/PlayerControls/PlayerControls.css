@@ -13,3 +13,10 @@
   position: relative;
   grid-area: player-controls;
 }
+
+@media screen and (max-width: 480px) {
+  .player__controls{
+    grid-template-columns: 40px 1fr 70px;
+    grid-template-rows: 30px 2px;
+  }
+}

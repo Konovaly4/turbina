@@ -46,10 +46,10 @@
 
 @media screen and (max-width: 480px) {
   .info-switch-button {
-    width: 100%;
+    width: calc(100% - 5px);
     max-width: 240px;
-    margin-left: 5px;
     font-size: 12px;
     line-height: 15px;
+    justify-self: end;
   }
 }
