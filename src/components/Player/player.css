@@ -73,11 +73,11 @@
 
 @media screen and (max-width: 768px) {
   .player__wrapper {
-    grid-template-columns: 61px 142px auto 69px;
+    grid-template-columns: 61px 142px auto min-content min-content 69px;
     grid-template-rows: 42px auto;
     grid-template-areas:
-    'playbutton playerwindow playerwindow switcher'
-    '. albumcover list .'
+    'player-controls player-controls player-controls movie-button info-button show-hide-button'
+    '. album-cover player-info player-info player-info .'
   ;
   }
 
@@ -139,13 +139,13 @@
   .player__wrapper {
     width: 100%;
     display: grid;
-    grid-template-columns: 40px auto 40px;
+    grid-template-columns: 40px 74px auto 40px;
     grid-template-rows: 32px 282px 51px auto;
     grid-template-areas:
-    'playbutton playerwindow switcher'
-    '. albumcover .'
-    '. selector .'
-    '. list .'
+    'player-controls player-controls player-controls show-hide-button'
+    '. album-cover album-cover .'
+    '. movie-button info-button .'
+    '. player-info player-info .'
   ;
     justify-items: center;
     align-items: center;

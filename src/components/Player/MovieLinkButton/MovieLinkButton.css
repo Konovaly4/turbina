@@ -9,6 +9,7 @@
   background-color: transparent;
   overflow: hidden;
   background-position: center;
+  object-fit: contain;
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
@@ -19,11 +20,11 @@
   display: none;
 }
 
-.player__video-button_small {
+.movie-link-button_small {
   background-image: url('../../../images/player/movie-button-small.svg');
 }
 
-.player__video-button_big {
+.movie-link-button_big {
   background-image: url('../../../images/player/movie-button-big.svg');
 }
 
