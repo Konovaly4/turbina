@@ -4,7 +4,7 @@ import OpenButton from '../svg/OpenButton';
 import './ShowHideButton.css';
 
 const ShowHideButton = memo(({visibility, showToggler}) => {
-  console.log('hide-button-re-render');
+  // console.log('hide-button-re-render');
   return (
     <button className='show-hide-button' onClick={showToggler}>
       {!visibility && <OpenButton />}

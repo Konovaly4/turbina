@@ -1,5 +1,6 @@
 import {useState, useEffect, useRef} from 'react';
 import classNames from 'classnames';
+import usePlayer from '../../hooks/usePlayer';
 import TrackName from './TrackName/TrackName';
 import PlayTime from './PlayTime/PlayTime';
 import MovieLinkButton from './MovieLinkButton/MovieLinkButton';
@@ -13,12 +14,9 @@ import emptyCover from '../../images/player/rectangle.jpg'
 import './player.css';
 
 const Player = (props) => {
-  const [firstRun, setFirstRun] = useState(0)
   const [visibility, setVisibility] = useState(true);
-  const [play, setPlay] = useState(false);
   const [tracks, setTracks] = useState([]);
   const [currentTrack, setCurrentTrack] = useState([]);
-  const [currentTime, setCurrentTime] = useState('00:00');
   const [titleMode, setTitleMode] = useState('releases');
   const [windowWidth, setWindowWidth] = useState(document.documentElement.clientWidth);
 
@@ -58,58 +56,32 @@ const Player = (props) => {
     setCurrentTrack(trackList[0]);
   }, [])
 
-  useEffect(() => {
-    !!play ? playerRef.current.play() : playerRef.current.pause();
-  }, [play])
-
-  useEffect (() => {
-    if (firstRun === 0) return;
-    const playTrack = () => {
-      setPlay(true);
-    }
-    setFirstRun(1);
-    playTrack()
-  }, [currentTrack, firstRun])
-
-  const setTime = () => {
-    let minutes = Math.floor((playerRef.current.duration - playerRef.current.currentTime) / 60);
-    let seconds = Math.floor((playerRef.current.duration - playerRef.current.currentTime) - minutes * 60);
-    let minuteValue;
-    let secondValue;
-    minuteValue = (minutes < 10) ? `0${minutes}` :  minutes;
-    secondValue = (seconds < 10) ? `0${seconds}` :  seconds;
-    let mediaTime = `${minuteValue}:${secondValue}`;
-    setCurrentTime(mediaTime);
-  }
-
   const showToggler = () => {
     setVisibility(!visibility);
-  }
-
-  const playToggler = () => {
-    if (!play) {
-      setPlay(true);
-    } else {
-      setPlay(false);
-    }
-  }
-
-  const trackSelector = (e) => {
-    setPlay(false);
-    const selectedTrack = tracks.find((i) => {
-      return (i.id === e.target.id);
-    });
-    setCurrentTrack(selectedTrack);
   }
 
   const switchMode = () => {
     setTitleMode(titleMode === 'releases' ? 'texts' : 'releases')
   }
 
-  const trackTimeChange = (e) => {
-    let scrollBarWidth = e.target.clientWidth;
-    let scrollWidth = e.clientX - e.target.getBoundingClientRect().left;
-    playerRef.current.currentTime = (playerRef.current.duration * scrollWidth) / scrollBarWidth;
+  const {
+    isPlaying,
+    duration,
+    currentTime,
+    playHandle,
+    loadHandle,
+    timeUpdHandle,
+    trackEndHandle,
+    setClickedTime,
+    setPlaying,
+  } = usePlayer(playerRef, currentTrack)
+
+  const trackSelector = (e) => {
+    setPlaying(false);
+    const selectedTrack = tracks.find((i) => {
+      return (i.id === e.target.id);
+    });
+    setCurrentTrack(selectedTrack);
   }
 
 
@@ -121,22 +93,24 @@ const Player = (props) => {
       <audio ref={playerRef}
         src={currentTrack.src}
         type="audio/mp3"
-        onTimeUpdate={setTime}
-        onLoadedData={setTime}
-        onEnded={props.selector} />
+        onTimeUpdate={timeUpdHandle}
+        onLoadedData={loadHandle}
+        onEnded={trackEndHandle}>
+        <p>Ваш браузер не поддерживает HTML5 аудио.</p>
+      </audio>
       <div className={classNames ('player__wrapper', {
         'player__wrapper_hidden' : !visibility,
         'player__wrapper_visible' : visibility,
       })}>
         <img  className={classNames ('player__cover', {'player__cover_hidden': !visibility})}
         src={currentTrack.cover !== undefined ? currentTrack.cover : emptyCover} alt='album-cover'/>
-        <PlayPauseButton play={play} currentTrack={currentTrack} playToggler={playToggler} />
+        <PlayPauseButton play={isPlaying} currentTrack={currentTrack} playToggler={playHandle} />
         <TrackName currentTrack={currentTrack} />
-        <PlayTime currentTime={currentTime} />
+        <PlayTime currentTime={currentTime} duration={duration} />
         <MovieLinkButton href={currentTrack.video} visibility={visibility} />
         <InfoSwitchButton visibility={visibility} setTitle={switchMode} titleMode={titleMode} />
         <ShowHideButton visibility={visibility} showToggler={showToggler} />
-        <Scroll trackTimeChange={trackTimeChange} track={playerRef} />
+        <Scroll setClickedTime={setClickedTime} currentTime={currentTime} duration={duration} />
         <PlayerInfo data={tracks} selector={trackSelector} titleMode={titleMode} currentTrack={currentTrack} />
       </div>
     </section>

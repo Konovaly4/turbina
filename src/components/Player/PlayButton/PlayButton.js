@@ -4,7 +4,7 @@ import PauseButton from '../svg/PauseButton';
 import './PlayButton.css';
 
 const  PlayPauseButton = memo(({currentTrack, play, playToggler}) => {
-  console.log('playbutton-re-render');
+  // console.log('playbutton-re-render');
     return (
       <button className='play-button' onClick={currentTrack.length !== 0 ? playToggler : undefined}>
           {!play && <PlayButton />}
