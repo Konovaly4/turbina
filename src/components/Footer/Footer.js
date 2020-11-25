@@ -1,24 +1,24 @@
-import React from "react";
-import "./footer.css";
-import { praktikumLink, marshakLink } from "../../data/footerConfig";
+import React from 'react';
+import './footer.css';
+import { praktikumLink, marshakLink } from '../../data/footerConfig';
 
 function Footer() {
   return (
-    <footer className="footer">
+    <footer className='footer'>
       <a
-        className="footer__link footer__link_marshak"
+        className='footer__link footer__link_marshak'
         href={marshakLink}
-        target="blanc"
+        target='blanc'
       >
         &#169; Маршак, 2020.
       </a>
-      <span className="footer__creator">
+      <span className='footer__creator'>
         Сделано студентами
         <a
-          rel="noreferrer"
-          target="_blank"
+          rel='noreferrer'
+          target='_blank'
           href={praktikumLink}
-          className="footer__link footer__link_spec"
+          className='footer__link footer__link_spec'
         >
           Яндекс.Практикум
         </a>

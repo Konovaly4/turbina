@@ -29,8 +29,8 @@ function Header(props) {
   if(windowWidth<=645){
     return (
       <div className='header'>
-        <a href={linkMarshak} target='blank'><img className='headerLogo' src={logoMarshak} alt='Логотип книжного магазина Маршак'/></a>
-        <ul className="headerLinksList">
+        <a href={linkMarshak} target='blank'><img className='header__logo' src={logoMarshak} alt='Логотип книжного магазина Маршак'/></a>
+        <ul className="header-links__list">
           <Streamings
             hidden = {isStreamigsHidden}
             onClick={handleVisible}
@@ -61,8 +61,8 @@ function Header(props) {
   }
   return (
     <div className='header'>
-      <a href={linkMarshak} target='blank'><img className='headerLogo' src={logoMarshak} alt='Логотип книжного магазина Маршак'/></a>
-      <ul className="headerLinksList">
+      <a href={linkMarshak} target='blank'><img className='header__logo' src={logoMarshak} alt='Логотип книжного магазина Маршак'/></a>
+      <ul className="header-links__list">
         <Links
           link = 'https://music.yandex.ru/home'
           title = 'Яндекс.Музыка ↗'/>

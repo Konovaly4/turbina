@@ -1,19 +1,19 @@
-import React from "react";
-import cx from "classnames";
-import "./index.css";
+import React from 'react';
+import cx from 'classnames';
+import './Form.css';
 import {
   inputsErorMes,
   inputEmailRegex,
   inputNameRegex,
   inputTelRegex,
-} from "./constants";
+} from './constants';
 
 function Form() {
   const [inputValues, updateInputValues] = React.useState({
-    name: "",
-    tel: "",
-    email: "",
-    text: "",
+    name: '',
+    tel: '',
+    email: '',
+    text: '',
     checkbox: false,
   });
 
@@ -32,33 +32,34 @@ function Form() {
       inputValue: null,
     };
     switch (inputValidationName) {
-      case "name":
+      case 'name':
         dataToCheck = {
           currentRegex: inputNameRegex,
           inputValue: inputValues.name,
         };
         break;
-      case "tel":
+      case 'tel':
         dataToCheck = {
           currentRegex: inputTelRegex,
           inputValue: inputValues.tel,
         };
         break;
-      case "email":
+      case 'email':
         dataToCheck = {
           currentRegex: inputEmailRegex,
           inputValue: inputValues.email,
         };
         break;
-      case "text":
+      case 'text':
         dataToCheck = {
           currentRegex: null,
           inputValue: inputValues.text,
         };
         break;
+      default:
     }
     const { currentRegex, inputValue } = dataToCheck;
-    if (inputValidationName === "text") {
+    if (inputValidationName === 'text') {
       setInputTextStart(true);
       const isInputValid = inputValue.length > 0;
       updateInputValidationValues({
@@ -77,8 +78,8 @@ function Form() {
   };
 
   const updateValue = (e) => {
-    const inputName = e.target.getAttribute("name");
-    if (inputName === "checkbox") {
+    const inputName = e.target.getAttribute('name');
+    if (inputName === 'checkbox') {
       updateInputValues({ ...inputValues, [inputName]: e.target.checked });
       return;
     }
@@ -107,30 +108,31 @@ function Form() {
   React.useEffect(() => {
     lastChangedInputName && checkValidInput(lastChangedInputName);
     isFormFilled();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputValues]);
 
   return (
-    <div className="contact-us">
-      <span className="contact-us__capture">
+    <div className='contact-us'>
+      <span className='contact-us__capture'>
         Заполняя эту форму, вы становитесь частью проекта.
       </span>
-      <form action="" className="form">
-        <div className="input-wrapper">
+      <form action='' className='form'>
+        <div className='input-wrapper'>
           <input
-            name="name"
+            name='name'
             value={inputValues.name}
             onChange={(e) => updateValue(e)}
-            className={cx("form__input", {
+            className={cx('form__input', {
               form__input_active: inputValues.name,
             })}
-            type="text"
-            placeholder="Имя и фамилия автора"
+            type='text'
+            placeholder='Имя и фамилия автора'
             required
           />
           {inputValues.name && (
             <span
-              className={cx("input-error", {
-                "input-error_true": !inputValidationValues.name,
+              className={cx('input-error', {
+                'input-error_true': !inputValidationValues.name,
               })}
             >
               {inputValidationValues.name
@@ -139,22 +141,22 @@ function Form() {
             </span>
           )}
         </div>
-        <div className="input-wrapper">
+        <div className='input-wrapper'>
           <input
-            name="tel"
+            name='tel'
             value={inputValues.tel}
             onChange={(e) => updateValue(e)}
-            className={cx("form__input", {
+            className={cx('form__input', {
               form__input_active: inputValues.tel,
             })}
-            type="tel"
-            placeholder="Телефон"
+            type='tel'
+            placeholder='Телефон'
             required
           />
           {inputValues.tel && (
             <span
-              className={cx("input-error", {
-                "input-error_true": !inputValidationValues.tel,
+              className={cx('input-error', {
+                'input-error_true': !inputValidationValues.tel,
               })}
             >
               {inputValidationValues.tel
@@ -163,22 +165,22 @@ function Form() {
             </span>
           )}
         </div>
-        <div className="input-wrapper">
+        <div className='input-wrapper'>
           <input
-            name="email"
+            name='email'
             value={inputValues.email}
             onChange={(e) => updateValue(e)}
-            className={cx("form__input", {
+            className={cx('form__input', {
               form__input_active: inputValues.email,
             })}
-            type="email"
-            placeholder="Почта"
+            type='email'
+            placeholder='Почта'
             required
           />
           {inputValues.email && (
             <span
-              className={cx("input-error", {
-                "input-error_true": !inputValidationValues.email,
+              className={cx('input-error', {
+                'input-error_true': !inputValidationValues.email,
               })}
             >
               {inputValidationValues.email
@@ -187,23 +189,23 @@ function Form() {
             </span>
           )}
         </div>
-        <div className="input-wrapper">
+        <div className='input-wrapper'>
           <textarea
-            name="text"
+            name='text'
             value={inputValues.text}
             onChange={(e) => updateValue(e)}
             required
-            rows="1"
-            className={cx("form__input", {
+            rows='1'
+            className={cx('form__input', {
               form__input_active: inputTextStart,
             })}
-            type="text"
-            placeholder="Стихи"
+            type='text'
+            placeholder='Стихи'
           />
           {inputTextStart && (
             <span
-              className={cx("input-error", {
-                "input-error_true": !inputValidationValues.text,
+              className={cx('input-error', {
+                'input-error_true': !inputValidationValues.text,
               })}
             >
               {inputValidationValues.text
@@ -212,23 +214,23 @@ function Form() {
             </span>
           )}
         </div>
-        <div className="checkbox">
-          <div htmlFor="checkbox" className="checkbox__input-wrapper">
+        <div className='checkbox'>
+          <div htmlFor='checkbox' className='checkbox__input-wrapper'>
             <input
-              name="checkbox"
+              name='checkbox'
               value={inputValues.checkbox}
               onChange={(e) => updateValue(e)}
               required
-              id="checkbox"
-              className="checkbox__input"
-              type="checkbox"
+              id='checkbox'
+              className='checkbox__input'
+              type='checkbox'
             />
-            <label htmlFor="checkbox" className="checkbox__input-fake"></label>
+            <label htmlFor='checkbox' className='checkbox__input-fake'></label>
           </div>
-          <label className="checkbox__label" htmlFor="checkbox">
-            <span className="checkbox__label-text">Согласен с</span>
-            <a href="#" className="checkbox__link">
-              <div className="checkbox__link-popup">
+          <label className='checkbox__label' htmlFor='checkbox'>
+            <span className='checkbox__label-text'>Согласен с</span>
+            <a href='#' className='checkbox__link'>
+              <div className='checkbox__link-popup'>
                 Пользовательское соглашение
               </div>
               офертой
@@ -236,16 +238,16 @@ function Form() {
           </label>
         </div>
         {isButtonActive ? (
-          <button type="submit" className="form-button">
+          <button type='submit' className='form-button'>
             Отправить форму
           </button>
         ) : (
           <button
             disabled
-            type="submit"
-            className="form-button form-button_disabled"
+            type='submit'
+            className='form-button form-button_disabled'
           >
-            <div className="form-button-popup">
+            <div className='form-button-popup'>
               Еще нельзя. Все поля, должны быть заполнены корректыми данными
             </div>
             Отправить форму

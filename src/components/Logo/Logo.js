@@ -1,14 +1,14 @@
-import React from "react";
-import "./logo.css";
-import logoTurbina from "../../images/logo-turbina.svg";
+import React from 'react';
+import './logo.css';
+import logoTurbina from '../../images/logo-turbina.svg';
 
 function Logo() {
   return (
-    <div className="mainLogo">
+    <div className='main__logo'>
       <img
-        className="mainLogoImage"
+        className='main__logo-image'
         src={logoTurbina}
-        alt="Логотип проекта Турбина."
+        alt='Логотип проекта Турбина.'
       />
     </div>
   );

@@ -1,16 +1,14 @@
-.mainLogo {
+.main__logo {
   margin: 0;
   width: 100%;
   max-width: 720px;
-  /* max-height: 780px; */
-  /* height: 40vh; */
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.mainLogoImage {
+.main__logo-image {
   width: 100%;
   max-width: 720px;
   max-height: 226px;
@@ -21,42 +19,42 @@
 }
 
 @media screen and (max-width: 1024px) {
-  .mainLogo {
+  .main__logo {
     max-width: 600px;
   }
 
-  .mainLogoImage {
+  .main__logo-image {
     max-width: 600px;
     max-height: 185px;
   }
 }
 
 @media screen and (max-width: 768px) {
-  .mainLogo {
+  .main__logo {
     max-width: 620px;
   }
 }
 
 @media screen and (max-width: 645px) {
-  .mainLogoImage {
+  .main__logo-image {
     max-width: 550px;
     max-height: 100px;
   }
 }
 
 @media screen and (max-width: 480px) {
-  .mainLogo {
+  .main__logo {
     max-width: 270px;
     height: 636px;
   }
 }
 
 @media screen and (max-width: 320px) {
-  .mainLogo {
+  .main__logo {
     height: 645px;
   }
 
-  .mainLogoImage {
+  .main__logo-image {
     max-width: 270px;
     max-height: 82px;
   }

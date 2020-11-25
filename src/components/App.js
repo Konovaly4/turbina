@@ -1,7 +1,7 @@
-import {useState} from "react";
-import Header from "./Header/Header";
-import Logo from "./Logo/Logo";
-import Footer from "./Footer/Footer";
+import {useState} from 'react';
+import Header from './Header/Header';
+import Logo from './Logo/Logo';
+import Footer from './Footer/Footer';
 import About from './About/About';
 import Player from './Player/Player';
 import './app.css';

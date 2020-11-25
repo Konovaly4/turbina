@@ -28,13 +28,13 @@
   padding: 0;
 }
 
-.headerLogo {
+.header__logo {
   width: 50px;
   height: 50px;
   transition: 0.5s;
 }
 
-.headerLogo:hover {
+.header__logo:hover {
   cursor: pointer;
   opacity: 0.6;
   transition: 0.5s;
@@ -45,7 +45,7 @@
     max-width: 1024px;
   }
 
-  .headerLogo {
+  .header__logo {
     width: 40px;
     height: 40px;
   }
@@ -62,7 +62,7 @@
     max-width: 320px;
   }
 
-  .headerLogo {
+  .header__logo {
     width: 24px;
     height: 24px;
   }

@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from "../Header/Header";
-import Logo from "../Logo/Logo";
-import Footer from "../Footer/Footer";
+import Header from '../Header/Header';
+import Logo from '../Logo/Logo';
+import Footer from '../Footer/Footer';
 import About from '../About/About';
 import Player from '../Player/Player';
 import './main.css';
@@ -15,7 +15,7 @@ function Main() {
   }
 
   return (
-    <section className="main">
+    <section className='main'>
         <Header isHidden={isHidden} handleVisible={handleVisible} />
         <Logo />
       <Player isHidden={isHidden} />
