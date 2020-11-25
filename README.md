@@ -19,6 +19,10 @@ This project was developed by team of 3 contributors during the Yandex Praktikum
 * ReactJS
 * CRA app
 
+## basic functions
+
+Web-page doesn't bind with any backend source, so, all interactive elements works "in test mode". Header links follows to actual main pages of signed resources, player can play 3 test tracks randomly added from contributor's media library, feedback form has custom validation, form submit event doesn't sent inputed data somewhere. Click all bittons and links to use all page's functions.
+
 ## How to start
 
 1. Clone this repository;
