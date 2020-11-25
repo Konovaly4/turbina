@@ -1,14 +1,15 @@
-import React from 'react';
+import cn from 'classnames';
 import './links.css';
 
 function Links(props) {
   return (
-      <li className={ props.windowWidth < 660 && !props.hidden ? 'header-links__list-item header-links__list-item_hidden' : 'header-links__list-item'}>
+      <li className={cn('header-links__list-item', {
+        'header-links__list-item_hidden': props.windowWidth < 660 && !props.hidden
+      })}>
         <a
           href={props.link}
           className='header__link'
-          target='blank'
-        >
+          target='blank'>
          {props.title}
         </a>
       </li>

@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react';
 import logoMarshak from '../../images/logo-marshak.svg';
+import {linksData} from '../../data/linksData';
 import Links from '../Links/Links'
 import Streamings from '../Streamings/Streamings'
 import './header.css';
@@ -26,55 +27,26 @@ function Header(props) {
     }
   })
 
-  if(windowWidth<=645){
-    return (
-      <div className='header'>
-        <a href={linkMarshak} target='blank'><img className='header__logo' src={logoMarshak} alt='Логотип книжного магазина Маршак'/></a>
-        <ul className="header-links__list">
-          <Streamings
-            hidden = {isStreamigsHidden}
-            onClick={handleVisible}
-            title = 'Стриминги'/>
-          <Links
-            windowWidth={windowWidth}
-            hidden = {isStreamigsHidden}
-            link = 'https://music.yandex.ru/home'
-            title = 'Яндекс.Музыка ↗'/>
-          <Links
-            windowWidth={windowWidth}
-            hidden = {isStreamigsHidden}
-            link = 'https://www.spotify.com/ru-ru/'
-            title = 'Spotify ↗'/>
-          <Links
-            windowWidth={windowWidth}
-            hidden = {isStreamigsHidden}
-            link = 'https://music.apple.com/ru/browse'
-            title = 'Apple Music ↗'/>
-          <Links
-            windowWidth={windowWidth}
-            hidden = {isStreamigsHidden}
-            link = 'https://vk.com/vkmusic'
-            title = 'VK Music ↗'/>
-        </ul>
-      </div>
-    )
-  }
   return (
     <div className='header'>
       <a href={linkMarshak} target='blank'><img className='header__logo' src={logoMarshak} alt='Логотип книжного магазина Маршак'/></a>
       <ul className="header-links__list">
-        <Links
-          link = 'https://music.yandex.ru/home'
-          title = 'Яндекс.Музыка ↗'/>
-        <Links
-          link = 'https://www.spotify.com/ru-ru/'
-          title = 'Spotify ↗'/>
-        <Links
-          link = 'https://music.apple.com/ru/browse'
-          title = 'Apple Music ↗'/>
-        <Links
-          link = 'https://vk.com/vkmusic'
-          title = 'VK Music ↗'/>
+      {windowWidth<=645 && 
+        <Streamings
+          hidden = {isStreamigsHidden}
+          onClick={handleVisible}
+          title = 'Стриминги'/>
+      }
+      {linksData.map((item, num) => {
+        return(
+          <Links
+          key = {num}
+          windowWidth={windowWidth}
+          hidden = {isStreamigsHidden}
+          link = {item.link}
+          title = {item.title} />
+        )
+      })}
       </ul>
     </div>
   )

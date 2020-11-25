@@ -3,7 +3,6 @@ import cn from 'classnames';
 import './PlayButton.css';
 
 const  PlayPauseButton = memo(({currentTrack, play, playToggler}) => {
-  // console.log('playbutton-re-render');
     return (
       <button className={cn('play-button', {
         'play-button_play-mode': !play,

@@ -9,14 +9,12 @@ import audioData from '../../data/audioData';
 import emptyCover from '../../images/player/rectangle.jpg'
 import './player.css';
 
-const Player = (props) => {
-  const [visibility, setVisibility] = useState(true);
+const Player = () => {
+  const [visibility, setVisibility] = useState(false);
   const [tracks, setTracks] = useState([]);
   const [currentTrack, setCurrentTrack] = useState([]);
   const [titleMode, setTitleMode] = useState('releases');
   const [windowWidth, setWindowWidth] = useState(document.documentElement.clientWidth);
-
-  console.log('re-render');
 
   useEffect(() => {
     const changeWindowWidth = () => {
@@ -59,7 +57,6 @@ const Player = (props) => {
   }
 
   const trackSelector = (e) => {
-    // setPlaying(false);
     const selectedTrack = tracks.find((i) => {
       return (i.id === e.target.id);
     });

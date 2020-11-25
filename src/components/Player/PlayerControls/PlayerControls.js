@@ -1,4 +1,4 @@
-import {useState, useEffect, useRef} from 'react'
+import {useEffect, useRef} from 'react'
 import usePlayer from '../../../hooks/usePlayer';
 import PlayPauseButton from '../PlayButton/PlayButton';
 import TrackName from '../TrackName/TrackName';

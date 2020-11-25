@@ -3,7 +3,6 @@ import cn from 'classnames';
 import './MovieLinkButton.css';
 
 const MovieLinkButton = memo(({href, visibility, windowWidth}) => {
-  // console.log('moviebutton-re-render')
   return (
     <button className={cn('movie-link-button', {
       'movie-link-button_small': windowWidth <= 480,

@@ -4,7 +4,6 @@ import defaultTexts from '../../../data/defaultTexts';
 import './InfoSwitchButton.css';
 
 const InfoSwitchButton = memo(({visibility, setTitle, titleMode}) => {
-  // console.log('info-button-re-render');
   return (
     <button
     className={cn('info-switch-button', {'info-switch-button_hidden' : !visibility})}
